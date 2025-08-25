@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omb-py"
+version = "0.1.2"
+description = "OMB — ODIN Meter & Billing (verifiable usage, signed bundles)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{name="ODIN Project"}]
+dependencies = [
+  "cryptography>=41.0.0",
+  "pydantic>=2.6.0"
+]
+keywords = ["usage", "metering", "billing", "ed25519", "signatures", "verifiable", "cryptography", "stripe"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Security :: Cryptography",
+  "Operating System :: OS Independent",
+  "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.5.0",
+  "pytest>=8.0.0",
+  "pytest-cov>=4.1.0",
+  "mypy>=1.8.0",
+]
+docs = ["mkdocs>=1.5.0", "mkdocs-material>=9.5.0"]
+stripe = ["stripe>=8.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/odin-org/omb"
+Issues = "https://github.com/odin-org/omb/issues"
+Documentation = "https://github.com/odin-org/omb#readme"
+Source = "https://github.com/odin-org/omb"
+Security = "https://github.com/odin-org/omb/security"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["omb*"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+exclude = ["tests"]
+
+[project.scripts]
+omb-cli = "omb.cli:main"
